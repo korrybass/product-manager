@@ -1,7 +1,23 @@
 .search-container{
   border-bottom: solid 1px #eaeaea;
-  .advanced-search{
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
 
+  .advanced-search-row{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    width: 0%;
+    transition: width .7s ease-in;
   }
-
+   .advanced-search-row.open{
+    width: 100%;
+    
+  }
+  .advanced-search{
+    background-color: transparent;
+    text-decoration: underline;
+    color: #3c75d6;
+  }
 }

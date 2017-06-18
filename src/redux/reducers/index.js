@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import searchProducts from './products.js';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  products: searchProducts
 });
 
 export default rootReducer;

@@ -1,0 +1,9 @@
+.table-container{
+  .product-intro{
+    display: flex;
+    flex-direction: row;
+  }
+  tr td{
+        border-bottom: 1px solid #eaeaea;
+  }
+}
