@@ -58,7 +58,7 @@ class Table extends Component {
   }
 
   render() {
-    const component = this;
+    const nameEditorCreate = this.createNameEditor;
     const saveName = this.updateBrandName
     const cellEditProp = {
       mode: 'click',
@@ -66,23 +66,31 @@ class Table extends Component {
         saveName(cellValue, row.itemId);
       }
     };
-    console.log(this)
     const options = { searchPosition: 'left' };
     const productList =  this.props.products;
     
     return (
       <div className="table-container">
-       
         <div className='dataTable'>
-          <BootstrapTable data={ productList } cellEdit={ cellEditProp } options={options} search={ true } 
-          searchPlaceholder='Search products'>
+          <BootstrapTable data={ productList } cellEdit={ cellEditProp } options={options} 
+          search={ true } searchPlaceholder='Search products'>
+            
             <TableHeaderColumn dataField={ "name" } isKey={ true } className="productHeader"
             dataFormat={ this.productRow} dataSort={ true } width="40%" >Product</TableHeaderColumn>
-            <TableHeaderColumn rowRef={this} width="15%" dataSort={ true } customEditor={ { getElement: component.createNameEditor } }
+            
+            <TableHeaderColumn rowRef={this} width="15%" dataSort={ true } 
+            customEditor={ { getElement: nameEditorCreate } }
             dataField={ "brandName" }>Brand Name</TableHeaderColumn>
-            <TableHeaderColumn editable={ false } dataSort={ true } dataField={ "categoryPath" } width="20%" dataFormat={ this.categoryRow }>  Category</TableHeaderColumn>
-            <TableHeaderColumn editable={ false } dataSort={ true } dataField={ "salePrice" } width="8%" dataFormat={ this.priceRow }>Price</TableHeaderColumn>
-            <TableHeaderColumn editable={ false } dataSort={ true } dataField={ "msrp" } width="8%" dataFormat={ this.priceRow }>MSRP</TableHeaderColumn>
+            
+            <TableHeaderColumn editable={ false } dataSort={ true } dataField={ "categoryPath" } 
+            width="20%" dataFormat={ this.categoryRow }>  Category</TableHeaderColumn>
+            
+            <TableHeaderColumn editable={ false } dataSort={ true } dataField={ "salePrice" } 
+            width="8%" dataFormat={ this.priceRow }>Price</TableHeaderColumn>
+            
+            <TableHeaderColumn editable={ false } dataSort={ true } dataField={ "msrp" } 
+            width="8%" dataFormat={ this.priceRow }>MSRP</TableHeaderColumn>
+            
             <TableHeaderColumn editable={ false } dataSort={ true } dataField={ "customerRating" } 
             dataFormat={ (item, data) => { return this.ratingRow(item, data, this)  }}>Reviews</TableHeaderColumn>
           </BootstrapTable>

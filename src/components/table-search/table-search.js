@@ -40,9 +40,9 @@ class TableSearch extends Component {
     
     return (
       <div className="search-container">
-        <TextInput fieldChange={(e) => { this.setParam('query', e.target.value) }} placeholder="Query (required)"/>
+        <TextInput classes='query' fieldChange={(e) => { this.setParam('query', e.target.value) }} placeholder="Query (required)"/>
         <div className={'advanced-search-row ' + advancedAnimate } >  
-          <TextInput fieldChange={(e) => { this.setParam('facet.filter', e.target.value, 'brand:') }} placeholder="Brand Name"/>
+          <TextInput  fieldChange={(e) => { this.setParam('facet.filter', e.target.value, 'brand:') }} placeholder="Brand Name"/>
           <TextInput fieldChange={(e) => { this.setParam('numItems', e.target.value) }} placeholder="Results"/>
           <TextInput fieldChange={(e) => { this.setParam('start', e.target.value) }} placeholder="Start At"/>
           <select onChange={(e) => { this.setParam('sort', e.target.value) }}>
