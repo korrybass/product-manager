@@ -5,11 +5,14 @@
   "dependencies": {
     "axios": "^0.16.2",
     "jsonp": "^0.2.1",
+    "lodash": "^4.17.4",
     "query-string": "^4.3.4",
     "react": "^15.6.0",
     "react-bootstrap-table": "^3.4.0",
     "react-dom": "^15.6.0",
     "react-redux": "^5.0.5",
+    "react-star-rating": "^1.4.2",
+    "react-star-rating-component": "^1.2.4",
     "redux": "^3.6.0",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0"

@@ -5,11 +5,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { queryProducts } from '../../redux/actions/search-table.js';
 
+
+
+
 class TableSearch extends Component {
   constructor(){
     super();
     this.state = {showAdvancedOptions: false, queries: {format: 'json'}}
-
     this.toggleAdvanceOptions = this.toggleAdvanceOptions.bind(this);
     this.setParam = this.setParam.bind(this);
   }
@@ -31,9 +33,11 @@ class TableSearch extends Component {
     output[field] = val;
     this.setState({ queries: output })
   }
+
   render() {
     const searchParams = this.state.queries;
     const advancedAnimate = (this.state.showAdvancedOptions) ? 'open' : '';
+    
     return (
       <div className="search-container">
         <TextInput fieldChange={(e) => { this.setParam('query', e.target.value) }} placeholder="Query (required)"/>
@@ -42,16 +46,16 @@ class TableSearch extends Component {
           <TextInput onChange={(e) => { this.setParam('query', e.target.value) }} placeholder="Results"/>
           <TextInput onChange={(e) => { this.setParam('start', e.target.value) }} placeholder="Start At"/>
           <select onChange={(e) => { this.setParam('sort', e.target.value) }}>
-            <option>Relevance</option>
-            <option>Price</option>
-            <option>Title</option>
-            <option>Bestseller</option>
-            <option>Customer Rating</option>
-            <option>New</option>                        
+            <option value="relevance">Relevance</option>
+            <option value="price">Price</option>
+            <option value="title">Title</option>
+            <option value="bestseller">Bestseller</option>
+            <option value="customerRating">Customer Rating</option>
+            <option value="new">New</option>                        
           </select>          
         </div>
         <button onClick={this.toggleAdvanceOptions} className={'advanced-search'}>Advanced Search</button>
-        <button onClick={ () => { this.props.queryProducts(searchParams) } } className="btn-blue">Add Products</button>
+        <button onClick={ () => { this.props.queryProducts(searchParams) } } className="btn-blue add-products">Add Products</button>
       </div>
     );
   }

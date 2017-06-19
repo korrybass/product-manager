@@ -15,3 +15,17 @@ export function queryProducts(search) {
     });
   }
 }
+
+export function removeItem(id){
+  return {
+    type: "REMOVE_ITEM",
+    payload: id
+  }
+}
+
+export function updateBrandName(name, id){
+  return{
+    type: "UPDATE_BRAND_NAME",
+    payload: {name, id}
+  }
+}
