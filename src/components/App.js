@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.scss';
 import './bootstrap.css';
-import TableSearch from './table-search/table-search.js';
-import Table from './table/table.js';
+import TableSearch from './TableSearch/TableSearch.js';
+import Table from './Table/Table.js';
 
 class App extends Component {
   render() {
