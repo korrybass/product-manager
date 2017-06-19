@@ -1,4 +1,16 @@
 .table-container{
+
+  th.sort-column{
+    position: relative;
+
+    .order{
+      .dropdown, .dropup{
+        display: none;
+      }
+      position: absolute;
+      right: 0;
+    }
+  }
   .product-intro{
     display: flex;
     flex-direction: row;
@@ -34,18 +46,23 @@
     top: 5px;
     position: relative;
   }
+
+  
   
   tr td{
     border-bottom: 4px solid #eaeaea;
   }
   .dataTable{
-    
+    td{
+      white-space: normal;
+    }
     th, td{
       vertical-align: middle;
       border-left: none;
       border-right: none;
     }
     th{
+      padding: 15px;
       background-color: #eaeaea;
     }
   }
@@ -64,5 +81,8 @@
       color: black;
       max-width: 200px;
     }
+  }
+  .price{
+    margin: 0;
   }
 }

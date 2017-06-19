@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { connect } from 'react-redux';
-import StarRating from 'react-star-rating-component';
 import './table.scss';
 import { bindActionCreators } from 'redux';
 import 'react-bootstrap-table/dist/react-bootstrap-table.min.css';
@@ -48,8 +47,8 @@ class Table extends Component {
   }
   priceRow(cell){
     let price;
-    if(cell){ price = <p> { "$"+cell.toFixed(2) } </p> }
-    else{ price = <p className="italics">(none)</p> }
+    if(cell){ price = <p className={'price'}> { "$"+cell.toFixed(2) } </p> }
+    else{ price = <p className="italics price">(none)</p> }
     return <div> { price } </div>
   }
   categoryRow(cell){
@@ -79,12 +78,12 @@ class Table extends Component {
           searchPlaceholder='Search products'>
             <TableHeaderColumn dataField={ "name" } isKey={ true } className="productHeader"
             dataFormat={ this.productRow} dataSort={ true } width="40%" >Product</TableHeaderColumn>
-            <TableHeaderColumn rowRef={this} customEditor={ { getElement: component.createNameEditor } }
+            <TableHeaderColumn rowRef={this} width="15%" dataSort={ true } customEditor={ { getElement: component.createNameEditor } }
             dataField={ "brandName" }>Brand Name</TableHeaderColumn>
-            <TableHeaderColumn editable={ false } dataField={ "categoryPath" } width="20%" dataFormat={ this.categoryRow }>  Category</TableHeaderColumn>
-            <TableHeaderColumn editable={ false } dataField={ "salePrice" } width="8%" dataFormat={ this.priceRow }>Price</TableHeaderColumn>
-            <TableHeaderColumn editable={ false } dataField={ "msrp" } width="8%" dataFormat={ this.priceRow }>MSRP</TableHeaderColumn>
-            <TableHeaderColumn editable={ false } dataField={ "customerRating" } 
+            <TableHeaderColumn editable={ false } dataSort={ true } dataField={ "categoryPath" } width="20%" dataFormat={ this.categoryRow }>  Category</TableHeaderColumn>
+            <TableHeaderColumn editable={ false } dataSort={ true } dataField={ "salePrice" } width="8%" dataFormat={ this.priceRow }>Price</TableHeaderColumn>
+            <TableHeaderColumn editable={ false } dataSort={ true } dataField={ "msrp" } width="8%" dataFormat={ this.priceRow }>MSRP</TableHeaderColumn>
+            <TableHeaderColumn editable={ false } dataSort={ true } dataField={ "customerRating" } 
             dataFormat={ (item, data) => { return this.ratingRow(item, data, this)  }}>Reviews</TableHeaderColumn>
           </BootstrapTable>
         </div>

@@ -3,7 +3,7 @@ import _ from 'lodash';
 export default function(state = [], action){
 
   if(action.type === 'REMOVE_ITEM'){
-    return state.filter( x => { if(x.itemId !== action.payload) return x; });
+    return state.filter( x => x.itemId !== action.payload );
   }
 
   if(action.type === 'UPDATE_BRAND_NAME'){

@@ -20,7 +20,7 @@ class TableSearch extends Component {
     this.setState({ showAdvancedOptions: !this.state.showAdvancedOptions })
   }
   setParam (field, val, facet){
-    let output = { ...this.state.queries }
+    let output = { ...this.state.queries };
     
     if(facet) { 
       output["facet"] = 'on'; 
@@ -43,8 +43,8 @@ class TableSearch extends Component {
         <TextInput fieldChange={(e) => { this.setParam('query', e.target.value) }} placeholder="Query (required)"/>
         <div className={'advanced-search-row ' + advancedAnimate } >  
           <TextInput fieldChange={(e) => { this.setParam('facet.filter', e.target.value, 'brand:') }} placeholder="Brand Name"/>
-          <TextInput onChange={(e) => { this.setParam('query', e.target.value) }} placeholder="Results"/>
-          <TextInput onChange={(e) => { this.setParam('start', e.target.value) }} placeholder="Start At"/>
+          <TextInput fieldChange={(e) => { this.setParam('numItems', e.target.value) }} placeholder="Results"/>
+          <TextInput fieldChange={(e) => { this.setParam('start', e.target.value) }} placeholder="Start At"/>
           <select onChange={(e) => { this.setParam('sort', e.target.value) }}>
             <option value="relevance">Relevance</option>
             <option value="price">Price</option>
