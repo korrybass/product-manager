@@ -4,7 +4,7 @@
 run ```npm install```
 then ```npm start```
 
-This will start the project.  
+The project will start at http://localhost:3000/  
 
 You can also run tests by running  
 ```npm run test```  
