@@ -20,11 +20,9 @@ class Table extends Component {
   render() {
     return (
       <div className="table-container">
-        <div>
-
-        </div>
+       
         <div className='dataTable'>
-          <BootstrapTable data={ mockData }>
+          <BootstrapTable data={ this.props.products } search searchPlaceholder='Search products'>
             <TableHeaderColumn dataField={ "itemId" } isKey={ true } dataFormat={ this.productRow} dataSort={ true }>Product</TableHeaderColumn>
             <TableHeaderColumn dataField={ "brandName" }>Brand Name</TableHeaderColumn>
             <TableHeaderColumn dataField={ "category" }>  Category</TableHeaderColumn>
@@ -37,8 +35,8 @@ class Table extends Component {
   }
 }
 
-const mapStateToProps = function(props){
-  return {  }
+const mapStateToProps = function(state){
+  return { products: state.products }
 }
 
 export default connect(mapStateToProps)(Table);
