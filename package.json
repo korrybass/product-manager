@@ -62,7 +62,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "mocha src/**/*.spec.js --compilers js:babel-core/register || true"
+    "test": "NODE_ENV=test mocha src/**/*.spec.js --compilers js:babel-core/register || true"
   },
   "jest": {
     "collectCoverageFrom": [
