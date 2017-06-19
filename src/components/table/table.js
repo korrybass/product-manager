@@ -26,7 +26,7 @@ class Table extends Component {
             <TableHeaderColumn dataField={ "itemId" } isKey={ true } dataFormat={ this.productRow} dataSort={ true }>Product</TableHeaderColumn>
             <TableHeaderColumn dataField={ "brandName" }>Brand Name</TableHeaderColumn>
             <TableHeaderColumn dataField={ "category" }>  Category</TableHeaderColumn>
-            <TableHeaderColumn dataField={ "msrp" }>MSRP</TableHeaderColumn>
+            <TableHeaderColumn dataField={ "salePrice" }>MSRP</TableHeaderColumn>
             <TableHeaderColumn dataField={ "customerRating" }>Reviews</TableHeaderColumn>
           </BootstrapTable>
         </div>
