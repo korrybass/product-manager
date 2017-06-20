@@ -42,9 +42,9 @@ class TableSearch extends Component {
           
           <TextInput  fieldChange={(e) => { this.setParam('facet.filter', e.target.value, 'brand:') }} placeholder="Brand Name"/>
           
-          <TextInput fieldChange={(e) => { this.setParam('numItems', e.target.value) }} placeholder="Results"/>
+          <TextInput inputType='number' fieldChange={(e) => { this.setParam('numItems', e.target.value) }} placeholder="Results"/>
           
-          <TextInput fieldChange={(e) => { this.setParam('start', e.target.value) }} placeholder="Start At"/>
+          <TextInput inputType='number' fieldChange={(e) => { this.setParam('start', e.target.value) }} placeholder="Start At"/>
           
           <select onChange={(e) => { this.setParam('sort', e.target.value) }}>
             <option value="relevance">Relevance</option>

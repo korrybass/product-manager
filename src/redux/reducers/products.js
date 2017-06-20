@@ -1,5 +1,19 @@
 import _ from 'lodash';
 
+//Utility function for hanlding dupes and joining the results
+export const joinAndRemoveDupes = function (arr){
+  let valuesMap = {}
+  arr.forEach( (x) => {
+    let value;
+    (valuesMap.hasOwnProperty(x.itemId)) ? value = valuesMap[x.itemId] : value = [];
+    valuesMap[x.itemId] = value.concat(x)
+  });
+  for(let key in valuesMap){ valuesMap[key] = _.assign(valuesMap[key][0], valuesMap[key][1]); }
+  arr.forEach( x => { if(valuesMap[x.itemId]){ x = valuesMap[x.itemId]; } });
+  arr = _.uniqBy( arr, 'itemId' );
+  return arr;
+}
+
 export default function(state = [], action){
 
   if(action.type === 'REMOVE_ITEM'){
@@ -19,7 +33,7 @@ export default function(state = [], action){
     let output;
     if(action.payload.items){
       let products = [...state, ...action.payload.items];
-      output = _.uniqBy( products, 'itemId' );
+      output = joinAndRemoveDupes(products);
     }
     else{ output = state}
     return output;
