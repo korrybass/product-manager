@@ -8,11 +8,14 @@ import { queryProducts } from '../../redux/actions/search-table.js';
 class TableSearch extends Component {
   constructor(){
     super();
-    this.state = {showAdvancedOptions: false, queries: {format: 'json'}}
+    this.state = {showAdvancedOptions: false, queries: {format: 'json'}, errors: { query: false }}
     this.toggleAdvanceOptions = this.toggleAdvanceOptions.bind(this);
     this.setParam = this.setParam.bind(this);
   }
 
+  checkErrors(){
+    this.setState( { errors: { query: this.state.queries["query"] === undefined } })
+  }
   toggleAdvanceOptions(){
     this.setState({ showAdvancedOptions: !this.state.showAdvancedOptions })
   }
@@ -31,13 +34,28 @@ class TableSearch extends Component {
     this.setState({ queries: output })
   }
 
+  hasErrors(){
+    for(let key in this.state.errors){
+      if(this.state.errors[key]) return true;
+    }
+    return false;
+  }
+
+  sendRequest(searchParams){
+    this.checkErrors();
+    if(this.hasErrors()){ this.props.queryProducts(searchParams) }
+  }
+
   render() {
     const searchParams = this.state.queries;
+    const error = (this.state.errors['query']) ? 'error' : '';
+    console.log(this.state, error);
+
     const advancedAnimate = (this.state.showAdvancedOptions) ? 'open' : '';
     
     return (
       <div className="search-container">
-        <TextInput classes='query' fieldChange={(e) => { this.setParam('query', e.target.value) }} placeholder="Query (required)"/>
+        <TextInput isRequired={true} classes={'query ' + error} fieldChange={(e) => { this.setParam('query', e.target.value) }} placeholder="Query (required)"/>
         <div className={'advanced-search-row ' + advancedAnimate } >  
           
           <TextInput  fieldChange={(e) => { this.setParam('facet.filter', e.target.value, 'brand:') }} placeholder="Brand Name"/>
@@ -56,7 +74,7 @@ class TableSearch extends Component {
           </select>          
         </div>
         <button onClick={this.toggleAdvanceOptions} className={'advanced-search'}>Advanced Search</button>
-        <button onClick={ () => { this.props.queryProducts(searchParams) } } className="btn-blue add-products">Add Products</button>
+        <button onClick={ () => { this.sendRequest(searchParams) } } className="btn-blue add-products">Add Products</button>
       </div>
     );
   }

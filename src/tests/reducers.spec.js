@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import reducer, { joinAndRemoveDupes } from '../redux/reducers/products.js';
+import reducer, { joinAndRemoveDupes, sortArrayJoinDupes } from '../redux/reducers/products.js';
 import _ from 'lodash';
 
 describe("Table Actions and Utilities", () => {
@@ -7,7 +7,8 @@ describe("Table Actions and Utilities", () => {
     var arr1 =  [ { itemId: 1111, name: "test1" }, 
     { itemId: 2222, prop: 'from old obj', name: 'test2' } , 
     { itemId: 2222, name: 'test2new' } ];
-    let output = joinAndRemoveDupes(arr1);
+    // let output = joinAndRemoveDupes(arr1);
+    let output = sortArrayJoinDupes(arr1);
     expect(output).to.deep.equal([ { itemId: 1111, name: "test1" }, { itemId: 2222, prop: 'from old obj', name: 'test2new' } ]);
   })
   it("should remove item from array", () => {

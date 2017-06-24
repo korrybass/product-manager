@@ -68,7 +68,8 @@ class Table extends Component {
     };
     const options = { searchPosition: 'left' };
     const productList =  this.props.products;
-    
+        console.log(this)
+
     return (
       <div className="table-container">
         <div className='dataTable'>

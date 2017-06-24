@@ -14,6 +14,16 @@ export const joinAndRemoveDupes = function (arr){
   return arr;
 }
 
+//Refactored
+export const  sortArrayJoinDupes = function(arr){
+  let newArr = [];
+  arr.forEach( function(x) {
+    if(!this[x.itemId]){ this[x.itemId] = x; newArr.push(this[x.itemId]) };
+    this[x.itemId] = _.assign(this[x.itemId], x);
+  }, {});
+  return newArr;
+}
+
 export default function(state = [], action){
 
   if(action.type === 'REMOVE_ITEM'){
@@ -33,7 +43,8 @@ export default function(state = [], action){
     let output;
     if(action.payload.items){
       let products = [...state, ...action.payload.items];
-      output = joinAndRemoveDupes(products);
+      // output = joinAndRemoveDupes(products);
+      output = sortArrayJoinDupes(products);
     }
     else{ output = state}
     return output;
