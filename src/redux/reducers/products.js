@@ -47,6 +47,9 @@ export default function(state = [], action){
       output = sortArrayJoinDupes(products);
     }
     else{ output = state}
+
+    // if(action.payload)
+
     return output;
   }
   return state;
