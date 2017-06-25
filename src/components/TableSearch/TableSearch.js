@@ -8,9 +8,20 @@ import { queryProducts } from '../../redux/actions/search-table.js';
 class TableSearch extends Component {
   constructor(){
     super();
-    this.state = {showAdvancedOptions: false, queries: {format: 'json'}, errors: { query: false }}
+    this.state = {
+      showAdvancedOptions: false, queries: {format: 'json'}, 
+      errors: { query: false },
+      submitted: false
+    
+    }
     this.toggleAdvanceOptions = this.toggleAdvanceOptions.bind(this);
     this.setParam = this.setParam.bind(this);
+  }
+
+  validate(){
+    return {
+      query: this.state.submitted && (this.state.queries.query === "" || this.state.queries.query === undefined)
+    }
   }
 
   checkErrors(){
@@ -22,7 +33,7 @@ class TableSearch extends Component {
   setParam (field, val, facet){
     let output = { ...this.state.queries };
     
-    if(facet) { 
+    if(facet) {
       output["facet"] = 'on'; 
       if(val.length > 1){
         val = val.charAt(0).toUpperCase() + val.slice(1); 
@@ -34,28 +45,24 @@ class TableSearch extends Component {
     this.setState({ queries: output })
   }
 
-  hasErrors(){
-    for(let key in this.state.errors){
-      if(this.state.errors[key]) return true;
-    }
-    return false;
-  }
-
   sendRequest(searchParams){
-    this.checkErrors();
-    if(this.hasErrors()){ this.props.queryProducts(searchParams) }
+    if(Object.values(this.validate()).some(x => x)) { return; }
+    else{ this.props.queryProducts(searchParams); }
+    this.setState({ submitted: true })
   }
 
   render() {
     const searchParams = this.state.queries;
-    const error = (this.state.errors['query']) ? 'error' : '';
-    console.log(this.state, error);
-
     const advancedAnimate = (this.state.showAdvancedOptions) ? 'open' : '';
+    const errors = this.validate();
     
     return (
       <div className="search-container">
-        <TextInput isRequired={true} classes={'query ' + error} fieldChange={(e) => { this.setParam('query', e.target.value) }} placeholder="Query (required)"/>
+        <div>
+          <TextInput isRequired={true} classes={'query '} fieldChange={(e) => { this.setParam('query', e.target.value) }} placeholder="Query (required)"/>
+          <span style={ { display: (errors.query) ? 'block' : 'none' } } className='error'>Enter a query</span>
+        </div>
+        
         <div className={'advanced-search-row ' + advancedAnimate } >  
           
           <TextInput  fieldChange={(e) => { this.setParam('facet.filter', e.target.value, 'brand:') }} placeholder="Brand Name"/>

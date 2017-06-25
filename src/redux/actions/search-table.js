@@ -10,7 +10,7 @@ export function queryProducts(search) {
   query = decodeURIComponent(query);
   return function(dispatch){
     jsonp(url+"?"+query,  function(err, data){
-      if(err){ console.log('error ', err) }
+      if(err){ dispatch({ type: "QUERY_TABLE", payload: {error: data} }) }
       else{ dispatch({ type: 'QUERY_TABLE', payload: data }) }
     });
   }
